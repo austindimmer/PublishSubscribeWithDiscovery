@@ -1,4 +1,5 @@
-﻿using ServiceLibrary.Contracts;
+﻿using ServiceLibrary;
+using ServiceLibrary.Contracts;
 using ServiceModelEx;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,15 @@ namespace Publisher
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PublishMainWindow : Window
     {
-        public MainWindow()
+        IMyEvents _Proxy;
+
+        public PublishMainWindow()
         {
             InitializeComponent();
+            this.Closed += MainWindow_Closed;
+
             var interval = TimeSpan.FromSeconds(5);
             var subcription = Observable.Interval(interval)            .Do(_ =>
             {
@@ -35,13 +40,23 @@ namespace Publisher
 
         }
 
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            //(_Proxy as ICommunicationObject).Close();
+        }
+
         private void PublishEvents()
         {
-            IMyEvents proxy = DiscoveryPublishService<IMyEvents>.CreateChannel();
-            proxy.OnEvent1();
-            proxy.OnEvent2(1);
-            proxy.OnEvent3(2, "Hello");
-            (proxy as ICommunicationObject).Close();
+            FaultHandledOperations.ExecuteFaultHandledOperation(() =>
+            {
+                _Proxy = DiscoveryPublishService<IMyEvents>.CreateChannel();
+                //_Proxy.OnEvent1();
+                //_Proxy.OnEvent2(1);
+                _Proxy.OnEvent3(2, "Hello");
+                (_Proxy as ICommunicationObject).Close();
+
+            });
+
         }
     }
 }

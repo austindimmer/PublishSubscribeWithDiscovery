@@ -8,26 +8,24 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PublishSubscribeService
+namespace Subscriber
 {
-    //[ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     [ServiceBehavior(AddressFilterMode = AddressFilterMode.Any, IncludeExceptionDetailInFaults = DebugHelper.IncludeExceptionDetailInFaults, InstanceContextMode = InstanceContextMode.Single, UseSynchronizationContext = false)]
-    class MyPublishService : DiscoveryPublishService<IMyEvents>, IMyEvents
+    class SubscriptionService : DiscoveryPublishService<IMyEvents>, IMyEvents
     {
         public void OnEvent1()
         {
-            Debug.WriteLine("MyPublishService OnEvent1");
-            FireEvent();
+            Debug.WriteLine("SubscriptionService OnEvent1");
         }
+
         public void OnEvent2(int number)
         {
-            Debug.WriteLine("MyPublishService OnEvent2");
-            FireEvent(number);
+            Debug.WriteLine("SubscriptionService OnEvent2");
         }
+
         public void OnEvent3(int number, string text)
         {
-            Debug.WriteLine("MyPublishService OnEvent3");
-            FireEvent(number, text);
+            Debug.WriteLine("SubscriptionService OnEvent3");
         }
     }
 }

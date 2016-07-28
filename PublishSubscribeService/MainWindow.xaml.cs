@@ -2,6 +2,7 @@
 using ServiceModelEx;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -39,7 +40,25 @@ namespace PublishSubscribeService
         private void ConfigurePubSubDiscoveryService()
         {
             _PubSubDiscoveryHost = DiscoveryPublishService<IMyEvents>.CreateHost<MyPublishService>();
+            _PubSubDiscoveryHost.Closed += _PubSubDiscoveryHost_Closed;
+            _PubSubDiscoveryHost.Faulted += _PubSubDiscoveryHost_Faulted;
+            _PubSubDiscoveryHost.Opened += _PubSubDiscoveryHost_Opened;
             _PubSubDiscoveryHost.Open();
+        }
+
+        private void _PubSubDiscoveryHost_Opened(object sender, EventArgs e)
+        {
+            Debug.WriteLine("_PubSubDiscoveryHost_Opened");
+        }
+
+        private void _PubSubDiscoveryHost_Faulted(object sender, EventArgs e)
+        {
+            Debug.WriteLine("_PubSubDiscoveryHost_Faulted");
+        }
+
+        private void _PubSubDiscoveryHost_Closed(object sender, EventArgs e)
+        {
+            Debug.WriteLine("_PubSubDiscoveryHost_Closed");
         }
     }
 }
