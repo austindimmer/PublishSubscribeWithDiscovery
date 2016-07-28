@@ -1,0 +1,379 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0858C710-AF53-4049-B98E-CFE3638D1228}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ServiceModelEx</RootNamespace>
+    <AssemblyName>ServiceModelEx</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ServiceModelEx_ServiceFabric</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ServiceModelEx_ServiceFabric</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ServiceBus">
+      <HintPath>..\..\..\..\..\Program Files\Microsoft SDKs\Azure\.NET SDK\v2.8\ToolsRef\Microsoft.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Discovery" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.WorkflowServices" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AsyncOneWayClientBase.cs" />
+    <Compile Include="Bindings\BindingRequirementAttribute.cs" />
+    <Compile Include="Bindings\NetNamedPipeContextBinding.cs" />
+    <Compile Include="Context\Async\AsyncContext.cs" />
+    <Compile Include="Context\Async\AsyncContextScope.cs" />
+    <Compile Include="Context\Async\AsyncExtensions.cs" />
+    <Compile Include="Context\Async\WcfContextAwaiter.cs" />
+    <Compile Include="Context\ContextClientBase.cs" />
+    <Compile Include="Context\ContextManager.cs" />
+    <Compile Include="Context\GenericContext.cs" />
+    <Compile Include="Context\HeaderChannelFactory.cs" />
+    <Compile Include="Context\HeaderClientBase.cs" />
+    <Compile Include="CustomSyncContext\Affinity\AffinitySynchronizer.cs" />
+    <Compile Include="CustomSyncContext\Affinity\CallbackThreadAffinityBehaviorAttribute.cs" />
+    <Compile Include="CustomSyncContext\Affinity\HostThreadAffinity.cs" />
+    <Compile Include="CustomSyncContext\Affinity\ThreadAffinityBehaviorAttribute.cs" />
+    <Compile Include="CustomSyncContext\Async\AsyncContextBehaviorAttribute.cs" />
+    <Compile Include="CustomSyncContext\Async\AsyncContextSynchronizer.cs" />
+    <Compile Include="CustomSyncContext\Async\HostAsyncContextExtensions.cs" />
+    <Compile Include="CustomSyncContext\CallbackThreadPoolBehaviorAttribute.cs" />
+    <Compile Include="CustomSyncContext\Priority\PriorityCallsBehaviorAttribute.cs" />
+    <Compile Include="CustomSyncContext\Priority\PriorityContext.cs" />
+    <Compile Include="CustomSyncContext\Priority\PriorityProxy.cs" />
+    <Compile Include="CustomSyncContext\Priority\PrioritySynchronizer.cs" />
+    <Compile Include="CustomSyncContext\ThreadPoolBehaviorAttribute.cs" />
+    <Compile Include="CustomSyncContext\ThreadPoolHelper.cs" />
+    <Compile Include="CustomSyncContext\ThreadPoolSynchronizer.cs" />
+    <Compile Include="CustomSyncContext\WorkItem.cs" />
+    <Compile Include="Data\DataTableHelper.cs" />
+    <Compile Include="Data\GenericDataContractSerializer.cs" />
+    <Compile Include="Data\GenericResolver.cs" />
+    <Compile Include="Data\GenericResolverBehaviorAttribute.cs" />
+    <Compile Include="Data\GenericResolverInstaller.cs" />
+    <Compile Include="Discovery\AddressesContainer.cs" />
+    <Compile Include="Discovery\AnnouncementSink.cs" />
+    <Compile Include="Discovery\DiscoveredServices.cs" />
+    <Compile Include="Discovery\DiscoveryFactory.cs" />
+    <Compile Include="Discovery\DiscoveryHelper.cs" />
+    <Compile Include="Discovery\DiscoveryPublishService.cs" />
+    <Compile Include="Discovery\Tcp\DiscoveryFactory.cs" />
+    <Compile Include="Discovery\Tcp\DiscoveryService.cs" />
+    <Compile Include="Discovery\Tcp\DuplexAnnouncementSink.cs" />
+    <Compile Include="Discovery\Tcp\DuplexDiscoveryClient.cs" />
+    <Compile Include="Discovery\Tcp\IAnnouncements.cs" />
+    <Compile Include="Discovery\Tcp\IAnnouncementsSubscription.cs" />
+    <Compile Include="Discovery\Tcp\IDiscovery.cs" />
+    <Compile Include="Discovery\Tcp\IDiscoveryCallback.cs" />
+    <Compile Include="Discovery\Tcp\IDiscoverySubscription.cs" />
+    <Compile Include="Duplex\DuplexChannelFactory.cs" />
+    <Compile Include="Duplex\DuplexClientBase.cs" />
+    <Compile Include="Duplex\InstanceContext.cs" />
+    <Compile Include="Durability\File\FileInstanceStore.cs" />
+    <Compile Include="Durability\File\FilePersistenceProvider.cs" />
+    <Compile Include="Durability\File\FilePersistenceProviderFactory.cs" />
+    <Compile Include="Durability\IInstanceStore.cs" />
+    <Compile Include="Durability\MemoryProvider.cs" />
+    <Compile Include="Durability\MemoryProviderFactory.cs" />
+    <Compile Include="Durability\Per Instance Storage\TransactionalInstanceProvider.cs" />
+    <Compile Include="Durability\Per Instance Storage\TransactionalInstanceProviderFactory.cs" />
+    <Compile Include="Durability\Per Instance Storage\TransactionalInstanceStore.cs" />
+    <Compile Include="Durability\Shared Memory Storage\TransactionalMemoryProvider.cs" />
+    <Compile Include="Durability\Shared Memory Storage\TransactionalMemoryProviderFactory.cs" />
+    <Compile Include="Durability\Shared Memory Storage\TransactionalMemoryStore.cs" />
+    <Compile Include="Errors\CallbackErrorHandlerAttribute.cs" />
+    <Compile Include="Errors\DebugHelper.cs" />
+    <Compile Include="Errors\ErrorHandlerAttribute.cs" />
+    <Compile Include="Errors\ErrorHandlerHelper.cs" />
+    <Compile Include="Errors\Logbook\ILogbookManagerService.cs" />
+    <Compile Include="Errors\Logbook\LogbookEntryClient.cs" />
+    <Compile Include="Errors\Logbook\LogbookEntryService.cs" />
+    <Compile Include="Errors\Logbook\LogbookManager.cs" />
+    <Compile Include="Errors\Logbook\LogbookManagerProxy.cs" />
+    <Compile Include="Errors\Logbook\WCFLogbookDataSet.cs">
+      <DependentUpon>WCFLogbookDataSet.xsd</DependentUpon>
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="Errors\Logbook\WCFLogbookDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WCFLogbookDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ArrayExtensions.cs" />
+    <Compile Include="Extensions\Collection.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
+    <Compile Include="GenericInterceptor\GenericInvoker.cs" />
+    <Compile Include="GenericInterceptor\InterceptorChannelFactory.cs" />
+    <Compile Include="GenericInterceptor\InterceptorClientBase.cs" />
+    <Compile Include="GenericInterceptor\OperationInterceptorBehaviorAttribute.cs" />
+    <Compile Include="GenericInterceptor\ServiceInterceptorBehaviorAttribute.cs" />
+    <Compile Include="Hosting\InProcFactory.cs" />
+    <Compile Include="Hosting\ServiceHost.cs" />
+    <Compile Include="Hosting\ServiceThrottleHelper.cs" />
+    <Compile Include="Hosting\WcfWrapper.cs" />
+    <Compile Include="MetadataHelper.cs" />
+    <Compile Include="OneWayClientBaseAsync.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PublishSubscribe\FilePublishService.cs" />
+    <Compile Include="PublishSubscribe\FileSubscriptionManager.cs" />
+    <Compile Include="PublishSubscribe\PersistentSubscriptionServiceProxy.cs" />
+    <Compile Include="PublishSubscribe\PublishService.cs" />
+    <Compile Include="PublishSubscribe\PublishSubscribeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PublishSubscribeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PublishSubscribe\PubSubContracts.cs" />
+    <Compile Include="PublishSubscribe\SubscriptionManager.cs" />
+    <Compile Include="Queueing\ClientResponseBase.cs" />
+    <Compile Include="Queueing\QueuedServiceHelper.cs" />
+    <Compile Include="Queueing\ResponseContext.cs" />
+    <Compile Include="Queueing\ServiceResponseBase.cs" />
+    <Compile Include="Security\Declarative Security\SecureClientBase.cs" />
+    <Compile Include="Security\Declarative Security\SecureDuplexClientBase.cs" />
+    <Compile Include="Security\Declarative Security\SecurityBehavior.cs" />
+    <Compile Include="Security\Declarative Security\SecurityBehaviorAttribute.cs" />
+    <Compile Include="Security\Declarative Security\SecurityHelper.cs" />
+    <Compile Include="Security\Declarative Security\ServiceSecurity.cs" />
+    <Compile Include="Security\Identity Stack\SecurityCallFrame.cs" />
+    <Compile Include="Security\Identity Stack\SecurityCallStack.cs" />
+    <Compile Include="Security\Identity Stack\SecurityCallStackClientBase.cs" />
+    <Compile Include="Security\Identity Stack\SecurityCallStackContext.cs" />
+    <Compile Include="Security\Identity Stack\SecurityCallStackInterceptor.cs" />
+    <Compile Include="ServiceBus\Discovery\IServiceBusAnnouncements.cs" />
+    <Compile Include="ServiceBus\Discovery\IServiceBusDiscovery.cs" />
+    <Compile Include="ServiceBus\Discovery\IServiceBusDiscoveryCallback.cs" />
+    <Compile Include="ServiceBus\Discovery\ServiceBusAnnouncementSink.cs" />
+    <Compile Include="ServiceBus\Discovery\ServiceBusDiscoveredServices.cs" />
+    <Compile Include="ServiceBus\Discovery\ServiceBusDiscoveryFactory.cs" />
+    <Compile Include="ServiceBus\Discovery\ServiceBusDiscoveryHelper.cs" />
+    <Compile Include="ServiceBus\Discovery\ServiceBusGraph.cs" />
+    <Compile Include="ServiceBus\Discovery\ServiceBusNode.cs" />
+    <Compile Include="ServiceBus\Hosts\DiscoverableServiceHost.cs" />
+    <Compile Include="ServiceBus\Hosts\DiscoverableServiceHost.DiscoveryRequestService.cs" />
+    <Compile Include="ServiceBus\Hosts\QueuedServiceBusHost.cs" />
+    <Compile Include="ServiceBus\Hosts\ServiceBusEventsHost.cs" />
+    <Compile Include="ServiceBus\Hosts\ServiceBusHost.cs" />
+    <Compile Include="ServiceBus\IServiceBusProperties.cs" />
+    <Compile Include="ServiceBus\Proxies\ClientResponseBase.cs" />
+    <Compile Include="ServiceBus\Proxies\OneWayProxy.cs" />
+    <Compile Include="ServiceBus\Proxies\QueuedServiceBusClient.cs" />
+    <Compile Include="ServiceBus\Proxies\ServiceBusDiscoveryClient.cs" />
+    <Compile Include="ServiceBus\Proxies\ServiceBusDuplexProxy.cs" />
+    <Compile Include="ServiceBus\Proxies\ServiceBusEventsClientBase.cs" />
+    <Compile Include="ServiceBus\Proxies\ServiceBusProxy.cs" />
+    <Compile Include="ServiceBus\Proxies\ServiceQueueResponseBase.cs" />
+    <Compile Include="ServiceBus\ServiceBusHelper - Buffers.cs" />
+    <Compile Include="ServiceBus\ServiceBusHelper - Configuration.cs" />
+    <Compile Include="ServiceBus\ServiceBusHelper - Queues.cs" />
+    <Compile Include="ServiceBus\ServiceBusHelper - Security.cs" />
+    <Compile Include="ServiceBus\ServiceBusMetadataHelper.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorBase.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorChannelInvoker.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorErrorHandlerAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorExtensions.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorGarbageCollectionAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorId.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorInstanceContextProvider.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorManager.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorOperationBehavior.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorOperationInvoker.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorProxy.cs" />
+    <Compile Include="ServiceFabric\Actors\ActorRegistration.cs" />
+    <Compile Include="ServiceFabric\Actors\CompletesActorInstanceAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\IActor.cs" />
+    <Compile Include="ServiceFabric\Actors\IStatefulActorManagement.cs" />
+    <Compile Include="ServiceFabric\Actors\ProxyMessageInterceptor.cs" />
+    <Compile Include="ServiceFabric\Actors\ReadonlyAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\State Management\Actor Volatile Storage\ActorInstanceProvider.cs" />
+    <Compile Include="ServiceFabric\Actors\State Management\Actor Volatile Storage\ActorInstanceProviderFactory.cs" />
+    <Compile Include="ServiceFabric\Actors\State Management\Actor Volatile Storage\ActorMemoryProvider.cs" />
+    <Compile Include="ServiceFabric\Actors\State Management\ActorStateProviderAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\State Management\KvsActorStateProviderAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\State Management\ReliableDictionaryActorStateProviderAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\State Management\VolatileActorStateProviderAttribute.cs" />
+    <Compile Include="ServiceFabric\Actors\StatefulActorBase.cs" />
+    <Compile Include="ServiceFabric\Actors\StatefulActorBehavior.cs" />
+    <Compile Include="ServiceFabric\Actors\StatelessActorBase.cs" />
+    <Compile Include="ServiceFabric\Actors\StatelessActorBehavior.cs" />
+    <Compile Include="ServiceFabric\AddressHelper.cs" />
+    <Compile Include="ServiceFabric\ApplicationManifestAttribute.cs" />
+    <Compile Include="ServiceFabric\BindingHelper.cs" />
+    <Compile Include="ServiceFabric\FabricRuntime.cs" />
+    <Compile Include="ServiceFabric\FabricThreadPoolBehavior.cs" />
+    <Compile Include="ServiceFabric\FabricThreadPoolHelper.cs" />
+    <Compile Include="ServiceFabric\Services\ICommunicationClient.cs" />
+    <Compile Include="ServiceFabric\Services\ICommunicationClientFactory.cs" />
+    <Compile Include="ServiceFabric\Services\ICommunicationListener.cs" />
+    <Compile Include="ServiceFabric\Services\IService.cs" />
+    <Compile Include="ServiceFabric\Services\ProxyMessageInterceptor.cs" />
+    <Compile Include="ServiceFabric\Services\ServiceChannelInvoker.cs" />
+    <Compile Include="ServiceFabric\Services\ServiceRemotingListener.cs" />
+    <Compile Include="ServiceFabric\Services\ServiceInitializationParameters.cs" />
+    <Compile Include="ServiceFabric\Services\ServiceInstanceListener.cs" />
+    <Compile Include="ServiceFabric\Services\ServiceOperationBehavior.cs" />
+    <Compile Include="ServiceFabric\Services\ServiceOperationInvoker.cs" />
+    <Compile Include="ServiceFabric\Services\ServicePartitionClient.cs" />
+    <Compile Include="ServiceFabric\Services\ServicePartitionResolver.cs" />
+    <Compile Include="ServiceFabric\Services\ServiceProxy.cs" />
+    <Compile Include="ServiceFabric\Services\StatelessServiceBase.cs" />
+    <Compile Include="ServiceFabric\Services\StatelessServiceBehavior.cs" />
+    <Compile Include="ServiceFabric\Services\StatelessServiceInitializationParameters.cs" />
+    <Compile Include="ServiceFabric\Services\Wcf\ServiceFabricClientBase.cs" />
+    <Compile Include="ServiceFabric\Services\Wcf\WcfCommunicaitonClientFactory.cs" />
+    <Compile Include="ServiceFabric\Services\Wcf\WcfCommunicationClient.cs" />
+    <Compile Include="ServiceFabric\Services\Wcf\WcfCommunicationListener.cs" />
+    <Compile Include="ServiceFabric\Services\Wcf\WcfHelper.cs" />
+    <Compile Include="ServiceFabric\Test\ServiceTestBase.cs" />
+    <Compile Include="ServiceFabric\Test\TestActorServiceBehavior.cs" />
+    <Compile Include="Transactions\TransactionalBehaviorAttribute.cs" />
+    <Compile Include="Transactions\VRMs\ResourceManager.cs" />
+    <Compile Include="Transactions\VRMs\Transactional.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalArray.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalCollection.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalDictionary.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalLinkedList.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalList.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalLock.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalQueue.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalSortedDictionary.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalSortedList.cs" />
+    <Compile Include="Transactions\VRMs\TransactionalStack.cs" />
+    <Compile Include="Windows Forms\ActivationMonitor.cs" />
+    <Compile Include="Windows Forms\AppSingleton.cs" />
+    <Compile Include="Windows Forms\FormHost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows Forms\Safe Controls\SafeButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows Forms\Safe Controls\SafeLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows Forms\Safe Controls\SafeListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows Forms\Safe Controls\SafeProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows Forms\Safe Controls\SafeStatusBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows Forms\Safe Controls\SafeTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows Forms\Safe Controls\SafeTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Errors\Logbook\WCFLogbookDataSet.xsc">
+      <DependentUpon>WCFLogbookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Errors\Logbook\WCFLogbookDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WCFLogbookDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Errors\Logbook\WCFLogbookDataSet.xss">
+      <DependentUpon>WCFLogbookDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PublishSubscribe\PublishSubscribeDataSet.xsc">
+      <DependentUpon>PublishSubscribeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PublishSubscribe\PublishSubscribeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PublishSubscribeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PublishSubscribe\PublishSubscribeDataSet.xss">
+      <DependentUpon>PublishSubscribeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Queueing\ResponseScope from Second Edition.zip" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Windows Forms\Safe Controls\SafeButton.bmp" />
+    <Content Include="Windows Forms\Safe Controls\SafeLabel.bmp" />
+    <Content Include="Windows Forms\Safe Controls\SafeListBox.bmp" />
+    <Content Include="Windows Forms\Safe Controls\SafeProgressBar.bmp" />
+    <Content Include="Windows Forms\Safe Controls\SafeStatusBar.bmp" />
+    <Content Include="Windows Forms\Safe Controls\SafeTextbox.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Windows Forms\Safe Controls\SafeButton.resx">
+      <DependentUpon>SafeButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows Forms\Safe Controls\SafeListBox.resx">
+      <DependentUpon>SafeListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows Forms\Safe Controls\SafeProgressBar.resx">
+      <DependentUpon>SafeProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows Forms\Safe Controls\SafeStatusBar.resx">
+      <DependentUpon>SafeStatusBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows Forms\Safe Controls\SafeTextBox.resx">
+      <DependentUpon>SafeTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows Forms\Safe Controls\SafeTrackBar.resx">
+      <DependentUpon>SafeTrackBar.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
