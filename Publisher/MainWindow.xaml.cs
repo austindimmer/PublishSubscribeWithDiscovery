@@ -1,6 +1,10 @@
-﻿using System;
+﻿using ServiceLibrary.Contracts;
+using ServiceModelEx;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +27,21 @@ namespace Publisher
         public MainWindow()
         {
             InitializeComponent();
+            var interval = TimeSpan.FromSeconds(5);
+            var subcription = Observable.Interval(interval)            .Do(_ =>
+            {
+                PublishEvents();
+            }).Subscribe();
+
+        }
+
+        private void PublishEvents()
+        {
+            IMyEvents proxy = DiscoveryPublishService<IMyEvents>.CreateChannel();
+            proxy.OnEvent1();
+            proxy.OnEvent2(1);
+            proxy.OnEvent3(2, "Hello");
+            (proxy as ICommunicationObject).Close();
         }
     }
 }
