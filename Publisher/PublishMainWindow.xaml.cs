@@ -43,7 +43,7 @@ namespace Publisher
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
-            //(_Proxy as ICommunicationObject).Close();
+            (_Proxy as ICommunicationObject).Close();
         }
 
         private void PublishEvents()
@@ -51,10 +51,10 @@ namespace Publisher
             FaultHandledOperations.ExecuteFaultHandledOperation(() =>
             {
                 _Proxy = DiscoveryPublishService<IMyEvents>.CreateChannel();
-                //_Proxy.OnEvent1();
-                //_Proxy.OnEvent2(1);
+                _Proxy.OnEvent1();
+                _Proxy.OnEvent2(1);
                 _Proxy.OnEvent3(2, "Hello");
-                (_Proxy as ICommunicationObject).Close();
+                //(_Proxy as ICommunicationObject).Close();
 
             });
 
