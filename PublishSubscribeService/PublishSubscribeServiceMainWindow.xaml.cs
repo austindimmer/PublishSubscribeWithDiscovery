@@ -22,10 +22,10 @@ namespace PublishSubscribeService
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PublishSubscribeServiceMainWindow : Window
     {
         ServiceHost _PubSubDiscoveryHost;
-        public MainWindow()
+        public PublishSubscribeServiceMainWindow()
         {
             InitializeComponent();
             this.Closed += MainWindow_Closed;

@@ -33,7 +33,8 @@ namespace Publisher
             this.Closed += MainWindow_Closed;
 
             var interval = TimeSpan.FromSeconds(5);
-            var subcription = Observable.Interval(interval)            .Do(_ =>
+            var subcription = Observable.Interval(interval)
+            .Do(_ =>
             {
                 PublishEvents();
             }).Subscribe();

@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthorizationValidationException.cs" />
-    <Compile Include="Contracts\IMySubscriptionService.cs" />
     <Compile Include="Contracts\IMyEvents.cs" />
     <Compile Include="CustomBindings.cs" />
     <Compile Include="FaultHandledOperations.cs" />
