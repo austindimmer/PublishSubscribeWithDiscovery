@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="AuthorizationValidationException.cs" />
     <Compile Include="Contracts\IMyEvents.cs" />
-    <Compile Include="CustomBindings.cs" />
     <Compile Include="FaultHandledOperations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
